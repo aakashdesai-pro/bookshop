@@ -1,6 +1,6 @@
 @extends('admin.app')
 @section('content')
-<div class="container mt-5">
+<div class="m-5">
     <div class="header d-flex justify-content-between my-2">
         <h3 class="text-primary">All Books</h3>
         <a href="{{ route('admin.book.create') }}" class="btn btn-outline-primary">Add Book</a>
