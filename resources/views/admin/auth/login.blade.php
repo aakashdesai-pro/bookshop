@@ -25,6 +25,9 @@
                 @error('email')
                     <small class="text-danger">{{ $message }}</small>
                 @enderror
+                @if (session()->has('error'))
+                <small class="text-danger">Invalid credentials.</small>
+                @endif
             </div>
 
             <div class="form-group">

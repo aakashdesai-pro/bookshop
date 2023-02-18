@@ -26,4 +26,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function (){
 
 Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'admin', 'as' => 'admin.'], function (){
     Route::resource('book', BookController::class);
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
