@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/admin', function (){
+    return redirect()->route('admin.login');
+});
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function (){
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
