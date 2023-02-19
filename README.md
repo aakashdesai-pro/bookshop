@@ -31,7 +31,7 @@
 ##### 4. Install required js dependency
 
 ```bash
-  npm install
+  npm install && npm run build
 ```
 
 ##### 5. Setup .env file
