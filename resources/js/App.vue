@@ -55,32 +55,38 @@
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div v-if="keyword">
-                            <div class="d-flex justify-content-evenly mt-2" v-if="books.meta">
-                                <div><button class="btn btn-primary" v-if="books.links.prev"
-                                        v-on:click="searchBooks(keyword, books.meta.current_page - 1)">Previous</button></div>
-                                <div>
-                                    <button class="btn mx-1" v-for="n in books.meta.last_page" v-bind:key="n"
-                                        v-on:click="searchBooks(keyword, n)"
-                                        v-bind:class="{ 'btn-primary': books.meta.current_page == n }">{{ n }}</button>
+                    <div v-if="books">
+                        <div v-if="books.data > 0">
+                            <div v-if="keyword">
+                                <div class="d-flex justify-content-evenly mt-2" v-if="books.meta">
+                                    <div><button class="btn btn-primary" v-if="books.links.prev"
+                                            v-on:click="searchBooks(keyword, books.meta.current_page - 1)">Previous</button></div>
+                                    <div>
+                                        <button class="btn mx-1" v-for="n in books.meta.last_page" v-bind:key="n"
+                                            v-on:click="searchBooks(keyword, n)"
+                                            v-bind:class="{ 'btn-primary': books.meta.current_page == n }">{{ n }}</button>
+                                    </div>
+                                    <div><button class="btn btn-primary" v-if="books.links.next"
+                                            v-on:click="searchBooks(keyword, books.meta.current_page + 1)">Next</button></div>
                                 </div>
-                                <div><button class="btn btn-primary" v-if="books.links.next"
-                                        v-on:click="searchBooks(keyword, books.meta.current_page + 1)">Next</button></div>
+                            </div>
+                            <div v-else>
+                                <div class="d-flex justify-content-evenly mt-2" v-if="books.meta">
+                                    <div><button class="btn btn-primary" v-if="books.links.prev"
+                                            v-on:click="fetchBooks(books.meta.current_page - 1)">Previous</button></div>
+                                    <div>
+                                        <button class="btn mx-1" v-for="n in books.meta.last_page" v-bind:key="n"
+                                            v-on:click="fetchBooks(n)" v-bind:class="{ 'btn-primary': books.meta.current_page == n }">{{
+                                                n }}</button>
+                                    </div>
+                                    <div><button class="btn btn-primary" v-if="books.links.next"
+                                            v-on:click="fetchBooks(books.meta.current_page + 1)">Next</button></div>
+                                </div>
                             </div>
                         </div>
-                        <div v-else>
-                            <div class="d-flex justify-content-evenly mt-2" v-if="books.meta">
-                                <div><button class="btn btn-primary" v-if="books.links.prev"
-                                        v-on:click="fetchBooks(books.meta.current_page - 1)">Previous</button></div>
-                                <div>
-                                    <button class="btn mx-1" v-for="n in books.meta.last_page" v-bind:key="n"
-                                        v-on:click="fetchBooks(n)" v-bind:class="{ 'btn-primary': books.meta.current_page == n }">{{
-                                            n }}</button>
-                                </div>
-                                <div><button class="btn btn-primary" v-if="books.links.next"
-                                        v-on:click="fetchBooks(books.meta.current_page + 1)">Next</button></div>
-                            </div>
+                        <div v-if="books.data == 0" class="d-flex justify-content-center align-items-center flex-column m-5">
+                            <p>There are no books found. !</p>
+                            <button class="btn btn-sm btn-danger" @click="clearFilters()">Clear</button>
                         </div>
                     </div>
                 </div>
@@ -91,7 +97,7 @@
                     </div>
                     <div class="col-md-6 p-4">
                         <button class="my-2 btn btn-sm btn-secondary" @click="bookView=false">Go Back</button>
-                        <table class="table table-stripted">
+                        <table class="table table-primary">
                             <tr>
                                 <th>Title</th>
                                 <td>{{ bookTitle }}</td>

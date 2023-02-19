@@ -30,7 +30,7 @@ class BookController extends Controller
             ->orWhere('description', "LIKE", '%'.$keyword.'%')
             ->orWhere('isbn', "LIKE", '%'.$keyword.'%')
             ->orWhere('publisher', "LIKE", '%'.$keyword.'%')
-            ->paginate(12);
+            ->paginate(8);
 
         return BookResource::collection($books);
     }
