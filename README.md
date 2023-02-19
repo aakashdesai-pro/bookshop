@@ -63,7 +63,7 @@
 ```
 - Note :- add running ``APP_URL`` in ``.env`` file because api will not work without ``APP_URL``.
 
-- Admin Panel ``APP_URL\admin``
+- Admin Panel ``APP_URL/admin``
 
 
 
