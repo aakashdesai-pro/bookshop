@@ -15,6 +15,7 @@ class BookResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'image_url' => $this->from_seeder ? $this->image_url : env('APP_URL').'/storage/uploads/'.$this->image_url,
             'title' => $this->title,
             'author' => $this->author,
