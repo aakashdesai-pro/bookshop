@@ -10,11 +10,16 @@ class BookController extends Controller
 {
     public function index()
     {
-        return BookResource::collection(Book::paginate(10));
+        return BookResource::collection(Book::paginate(12));
     }
 
     public function getById($id)
     {
         return BookResource::make(Book::find($id));
+    }
+
+    public function searchBook($keyword)
+    {
+        //todo
     }
 }
