@@ -20,6 +20,14 @@ class BookController extends Controller
 
     public function searchBook($keyword)
     {
-        //todo
+        $books = Book::where('title', "LIKE", '%'.$keyword.'%')
+            ->orWhere('author', "LIKE", '%'.$keyword.'%')
+            ->orWhere('genre', "LIKE", '%'.$keyword.'%')
+            ->orWhere('description', "LIKE", '%'.$keyword.'%')
+            ->orWhere('isbn', "LIKE", '%'.$keyword.'%')
+            ->orWhere('publisher', "LIKE", '%'.$keyword.'%')
+            ->paginate(12);
+
+        return BookResource::collection($books);
     }
 }

@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Book;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class BookSeeder extends Seeder
 {
@@ -22,9 +24,14 @@ class BookSeeder extends Seeder
             echo 'Error:' . curl_error($ch);
         }
         curl_close($ch);
-        foreach (json_decode($result)->data as $book) {
+        foreach (json_decode($result)->data as $key => $book) {
+
+            $contents = file_get_contents('https://loremflickr.com/200/200/book');
+            $newImageName = Str::random(20).time().".jpg";
+            Storage::put('/public/uploads/'.$newImageName, $contents);
+
             Book::create([
-                'image_url' => $book->image,
+                'image_url' => $newImageName,
                 'title' => $book->title,
                 'author' => $book->author,
                 'genre' => $book->genre,
@@ -32,8 +39,10 @@ class BookSeeder extends Seeder
                 'isbn' => $book->isbn,
                 'published' => $book->published,
                 'publisher' => $book->publisher,
-                'from_seeder' => true
+                'from_seeder' => false
             ]);
+
+            echo ($key+1).' records created successfully';
         }
     }
 }
