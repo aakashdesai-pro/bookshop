@@ -6,7 +6,7 @@
 **Server:** MySql v8
 
 
-## Installation
+## Installation (Run all these commands)
 
 ##### 1. Clone project to local
 
@@ -28,13 +28,13 @@
   composer install
 ```
 
-##### 4. Install required js dependency
+##### 4. Install required js dependency and make build
 
 ```bash
   npm install && npm run build
 ```
 
-##### 5. Setup .env file
+##### 5. Create .env file
 
 ```bash
   cp .env.example .env
@@ -50,7 +50,7 @@
 - DB_USERNAME={db_username}
 - DB_PASSWORD={db_password}
 
-##### 7. Run migration and seeder
+##### 7. Run migration and seeder (It will take few minutes)
 
 ```bash
   php artisan migrate --seed
@@ -64,6 +64,8 @@
 - Note :- add running ``APP_URL`` in ``.env`` file because api will not work without ``APP_URL``.
 
 - Admin Panel ``APP_URL/admin``
+- Email :- ``admin@admin.com``
+- Password :- ``password``
 
 
 
